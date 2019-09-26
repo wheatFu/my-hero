@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero} from '../hero';
+import { Heros } from '../mock-heroes';
 
 @Component({
   selector: 'app-heros',
@@ -7,13 +8,14 @@ import { Hero} from '../hero';
   styleUrls: ['./heros.component.css']
 })
 export class HerosComponent implements OnInit {
-  hero : Hero = {
-    id: 1,
-    name: 'Windstorm'
-  }
-  constructor() { }
+  constructor() {}
+  heros = Heros;
+  selectedHero: Hero;
 
-  ngOnInit() {
+  onSelect(hero): void {
+    this.selectedHero = hero;
   }
+  // 生命周期hook,创建完组件后很快调用的函数，适合放置初始化逻辑
+  ngOnInit() { }
 
 }

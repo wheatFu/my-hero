@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HerosComponent } from './heros/heros.component';
+import { HeroDetaisComponent } from './hero-detais/hero-detais.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HerosComponent,
+    HeroDetaisComponent,
   ],
   imports: [
     BrowserModule,
@@ -17,11 +19,5 @@ import { HerosComponent } from './heros/heros.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule implements OnInit {
-  constructor(){}
-
-  //生命周期hook,创建完组件后很快调用的函数，适合放置初始化逻辑
-  ngOnInit(){
-
-  }
- }
+export class AppModule {
+}
