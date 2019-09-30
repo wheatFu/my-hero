@@ -1,0 +1,66 @@
+****************ng -cli 安装：
+1.   npm install -g @angular/cli
+2.   ng new my-app<会新建项目并安装依赖包，用npm会很慢改良2.1>
+	--2.1 ng new my-app --skip-install
+3.   cd my-app
+	--3.1 cnpm install <执行的2，这步可以省略,执行的2.1 在执行这步，节约时间>
+4.   ng server --o<自动打开>
+
+****************生成项目目录
+1.   e2e 测试目录
+2.   node_modules  依赖库
+3.   src 真正项目目录
+	3.1：main.ts 项目主入口,加载了AppModule（3.2）+ environment （3.4）两个模块
+	3.2: app 首先模块app.module.ts加载了AppComponent组件，这个组建渲染对应的html+css	
+		3.2.1： app.component.spec.ts测试
+	3.3: assets 
+	3.4 environments 
+
+
+***************指令
+查看指令 ng help 出现指令大全并释意，
+查看指令的辅助项 ng new --help
+1.  Ng new 创建项目
+	参数：1.开发辅助  --dry run	
+	          2.修改项目默认值 --prefix
+
+2.ng serve --The name of the project to build. Can be an application or a library.
+	参数：1.多开：修改主机或者端口eg: ng serve --port 4201 
+	          2.代码同步：类似 gulp :watch
+
+3.  ng generate component <name> 生成组建，自动注册到appModule
+    ng g service test -m app.module <-m app.module 将服务手动注册到appModule, 组件自动注册，service 默认不注册>
+	ng generate module app-routing --flat --module=app<--flat 把这个文件放进了 src/app 中，而不是单独的目录中。
+													--module=app 告诉 CLI 把它注册到 AppModule 的 imports 数组中。>
+	
+4. ng test --检查xx.spec.ts 文件的检测内容
+
+5.  ng build --打包，减少资源请求，减少体积，使项目不分散
+	：编译后生成到dist目录下
+	：ng build --aot 预编译，减小体积，减少不必要部分
+	：ng b --prod 前面都是开发模式，prod 生成模式
+	       
+
+6.  在 Angular 中 constructor 一般用于依赖注入或执行简单的数据初始化操作[类的构造函数,类在实例化的时候就会先调用他]
+	ngOnInit ,生命周期中的一个钩子:主要用于执行组件的其它初始化操作或获取组件输入的属性值。
+	注：construcor 在所有钩子函数之前执行
+
+7.	ng2中所有钩子函数和条用顺序
+
+	1.ngOnChanges - 当数据绑定输入属性的值发生变化时调用
+
+	2.ngOnInit - 在第一次 ngOnChanges 后调用
+
+	3.ngDoCheck - 自定义的方法，用于检测和处理值的改变
+
+	4.ngAfterContentInit - 在组件内容初始化之后调用
+
+	5.ngAfterContentChecked - 组件每次检查内容时调用
+
+	6.ngAfterViewInit - 组件相应的视图初始化之后调用
+
+	7.ngAfterViewChecked - 组件每次检查视图时调用
+
+	8.ngOnDestroy - 指令销毁前调用
+	
+	
