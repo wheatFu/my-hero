@@ -12,19 +12,24 @@ export class HerosComponent implements OnInit {
   constructor(
     private heroService: HeroService
   ) { }
+
   getHeros(): void {
     this.heroService.getHeros()
     .subscribe((heroes) => {
       this.heros = heroes;
     });
   }
+
   add(name: string): void {
     if (!name) {return; }
     this.heroService.addHero({name} as Hero)
     .subscribe(hero => this.heros.push(hero));
   }
+
   delete(hero: Hero): void {
-    
+    this.heros = this.heros.filter(h => h !== hero);
+    this.heroService.deleteHero(hero)
+    .subscribe();
   }
 
   // 生命周期hook,创建完组件后很快调用的函数，适合放置初始化逻辑

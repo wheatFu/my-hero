@@ -18,16 +18,7 @@ export class HeroService {
   constructor(
     private msgService: MessageService,
     private http: HttpClient,
-  ) {
-  }
-
-  getHeros(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl)
-    .pipe(
-      tap(() => this.log('fethced Heros')),
-      catchError(this.handleError<Hero[]>('getHeros', []))
-    );
-  }
+  ) { }
 
   private log(msg: string) {
     this.msgService.add(`HeroService: ${msg}`);
@@ -39,6 +30,14 @@ export class HeroService {
       this.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+
+  getHeros(): Observable<Hero[]> {
+    return this.http.get<Hero[]>(this.heroesUrl)
+    .pipe(
+      tap(() => this.log('fethced Heros')),
+      catchError(this.handleError<Hero[]>('getHeros', []))
+    );
   }
 
   /** get */
@@ -75,6 +74,19 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete<Hero>(url, httpOptions)
     .pipe(
+      tap(_ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Hero>('deleteHero')),
+    );
+  }
+  /** search */
+  searchHero(queryKey: string): Observable<Hero[]> {
+    if (!queryKey.trim()) {
+      return of([]);
+    }
+    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${queryKey}` , httpOptions)
+    .pipe(
+      tap(_ => this.log(`fund hero matchs "${queryKey}"`)),
+      catchError(this.handleError<Hero[]>('searchHero', []))
     );
   }
 }
