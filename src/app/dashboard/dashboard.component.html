@@ -1,8 +1,14 @@
 <h2>Top Heros</h2>
+
+<div>
+    <input type="radio" name="colors" (click)="pick('green')">Green
+    <input type="radio" name="colors" (click)="pick('yellow')">Yellow
+    <input type="radio" name="colors" (click)="pick('cyan')">Cyan
+  </div>
 <div class="grid grid-pad">
     <a *ngFor="let hero of heros" class="col-1-4"
         [routerLink]="['/detail', hero.id]" >
-        <div class="module hero">
+        <div class="module hero" [appHighlight]="color">
             <h4>{{hero.name}}</h4>
         </div>
     </a>

@@ -5,6 +5,7 @@
   padding: 0;
   width: 15em;
 }
+
 .heroes li {
   position: relative;
   cursor: pointer;
@@ -13,6 +14,9 @@
   padding: .3em 0;
   height: 1.6em;
   border-radius: 4px;
+}
+.specil {
+  background-color: red!important;
 }
 
 .heroes li:hover {

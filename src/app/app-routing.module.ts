@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HerosComponent } from './heros/heros.component';
 
+
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {path: 'heros', component: HerosComponent},
