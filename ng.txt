@@ -14,7 +14,7 @@
 	3.2: app 首先模块app.module.ts加载了AppComponent组件，这个组建渲染对应的html+css	
 		3.2.1： app.component.spec.ts测试
 	3.3: assets 
-	3.4 environments 
+	3.4: environments 
 
 
 ***************指令
@@ -22,16 +22,17 @@
 查看指令的辅助项 ng new --help
 1.  Ng new 创建项目
 	参数：1.开发辅助  --dry run	
-	          2.修改项目默认值 --prefix
+	      2.修改项目默认值 --prefix
+		  3.指定项目用sacc css预处理 --style=sass
 
 2.ng serve --The name of the project to build. Can be an application or a library.
 	参数：1.多开：修改主机或者端口eg: ng serve --port 4201 
-	          2.代码同步：类似 gulp :watch
+	      2.代码同步：类似 gulp :watch
 
 3.  ng generate component <name> 生成组建，自动注册到appModule
     ng g service test -m app.module <-m app.module 将服务手动注册到appModule, 组件自动注册，service 默认不注册>
-	ng generate module app-routing --flat --module=app<--flat 把这个文件放进了 src/app 中，而不是单独的目录中。
-													--module=app 告诉 CLI 把它注册到 AppModule 的 imports 数组中。>
+	ng generate module app-routing --flat --module=app <--flat 把这个文件放进了 src/app 中，而不是单独的目录中--module=app 告诉 CLI 把它注册到 AppModule 的 imports 数组中。>
+	ng g component --inline-styles 创建组件时，会定义一个空的 styles 数组
 	
 4. ng test --检查xx.spec.ts 文件的检测内容
 
@@ -64,3 +65,55 @@
 	8.ngOnDestroy - 指令销毁前调用
 	
 	
+*************常用名词
+1.	DI依赖注入
+2.	markup 绑定标记
+3.  样式模块化
+
+*************模块 module<元数据>
+	1.declarations（可声明对象表） —— 那些属于本 NgModule 的组件、指令、管道。eg:AppComponent
+
+	2.exports（导出表） —— 那些能在其它模块的组件模板中使用的可声明对象的子集。eg:AppRoutingModule > RouterModule <根模块没有任何理由导出任何东西，因为其它模块永远不需要导入根模块。>
+
+	3.imports（导入表） —— 那些导出了本模块中的组件模板所需的类的其它模块。eg:AppRoutingModule
+
+	4.providers —— 本模块向全局服务中贡献的那些服务的创建器。 这些服务能被本应用中的任何部分使用。（你也可以在组件级别指定服务提供商，这通常是首选方式。）
+
+	5.bootstrap —— 应用的主视图，称为根组件。它是应用中所有其它视图的宿主。只有根模块才应该设置这个 bootstrap 属性。
+	
+
+***************组件交互
+1.  @input 输入,父组件数据通过绑定[]向子组件输入
+
+2.  @output 输出,父组件监听子组件的事件 EventEmitter输出属性
+
+3.  父组件获取子组件的属性和方法：
+	3.1.  本地变量
+		  <button (click)="timer.stop()">Stop</button>
+		  <div class="seconds">{{timer.seconds}}</div>
+		  <app-countdown-timer #timer></app-countdown-timer>
+		  局限，只能再父组件模板内使用,父组件类里无法使用
+	3.2.  使用  @ViewChild(ClidComponent, {static: false})
+				private timerComponent: ClidComponent;  
+								  
+4.  父组件和它的子组件共享同一个服务，利用该服务在组件家族内部实现双向通讯。
+
+
+**********样式模块化
+1.  :host 用来选择组件宿主元素中的元素（相对于组件模板内部的元素）
+2.  ::ng-deep 刺穿 Shadow DOM 任何带有 ::ng-deep 的样式都会变成全局样式。为了把指定的样式限定在当前组件及其下级组件中，请确保在 ::ng-deep 之前带上 :host 选择器
+3.  视图封装模型
+	3.1 ShadowDom 不进不出，没有样式能进来，组件样式出不去
+	3.2 Native 视图包装模式使用浏览器原生 Shadow DOM 的一个废弃实现 
+	3.3 Emulated 只进不出，全局样式能进来，组件样式出不去（仿真模式）
+	3.4 None 能进能出
+	使用方法组件元数据：encapsulation: ViewEncapsulation.Emulated
+	
+***********@Directive
+1.  自定义属性指令 [Highlight],不能将[]认为数组,是属性指令的标志
+	1.1. 可以在指令的构造函数中使用 ElementRef 来注入宿主 DOM 元素的引用，也就是你放置 appHighlight 的那个元素。
+	1.2. ElementRef 通过其 nativeElement 属性给你了直接访问宿主 DOM 元素的能力。[this.elementref.nativeElement.style.xx = 'css']
+	1.3. @HostListener 装饰器让你订阅某个属性型指令所在的宿主 DOM 元素的事件
+	1.4. 在html中使用自定义属性输入值使用@Input(),因为绑定属性的宿主元素和指令不是从属关系
+	1.5. Angular 把组件的模板看做从属于该组件的。 组件和它的模板默认会相互信任
+	1.6. 根据属性名在绑定中出现的位置来判定是否要加 @Input, = 左边需要加,右边不需要eg:[appHighlight]="color"
