@@ -7,7 +7,7 @@ import { MessageService } from '../message.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-
+  date = new Date();
   constructor(
     public msgService: MessageService,
   ) { }

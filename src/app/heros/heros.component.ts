@@ -10,6 +10,7 @@ import { Hero} from '../hero';
 export class HerosComponent implements OnInit {
   heros: Hero [];
   specil = true;
+  condition = false;
   constructor(
     private heroService: HeroService
   ) { }
@@ -32,6 +33,7 @@ export class HerosComponent implements OnInit {
     this.heroService.deleteHero(hero)
     .subscribe();
   }
+
   // 生命周期hook,创建完组件后很快调用的函数，适合放置初始化逻辑
   ngOnInit() {
     this.getHeros();
