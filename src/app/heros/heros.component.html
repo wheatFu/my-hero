@@ -13,7 +13,7 @@
 <ul class="heroes" *appUnless = "condition">
     <li *ngFor="let hero of heros" [class]="specil">
         <a [routerLink]="['/detail',hero.id]">
-            <span class="badge">{{hero?.id | currency}}</span> {{hero?.name}}
+            <span class="badge">{{hero?.id | expeLengthPipe:2}}</span> {{hero?.name}}
         </a>
         <ng-template>test</ng-template>
         <button class="delete" title="delete hero" (click)="delete(hero)">x</button>

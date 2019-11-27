@@ -14,6 +14,8 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HighlightDirective } from './highlight.directive';
 import { UnlessDirective } from './unless.directive';
+import { ExpeLengthPipePipe, ExponentialStrength } from './expe-length-pipe.pipe';
+import { PowerBoosterComponent } from './power-booster/power-booster.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,9 @@ import { UnlessDirective } from './unless.directive';
     HeroSearchComponent,
     HighlightDirective,
     UnlessDirective,
+    ExpeLengthPipePipe,
+    ExponentialStrength,
+    PowerBoosterComponent,
 
   ],
   imports: [
