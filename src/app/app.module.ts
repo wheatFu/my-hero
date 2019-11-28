@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HerosComponent } from './heros/heros.component';
@@ -16,6 +16,7 @@ import { HighlightDirective } from './highlight.directive';
 import { UnlessDirective } from './unless.directive';
 import { ExpeLengthPipePipe, ExponentialStrength } from './expe-length-pipe.pipe';
 import { PowerBoosterComponent } from './power-booster/power-booster.component';
+import { NameEditorComponent } from './name-editor/name-editor.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +31,13 @@ import { PowerBoosterComponent } from './power-booster/power-booster.component';
     ExpeLengthPipePipe,
     ExponentialStrength,
     PowerBoosterComponent,
+    NameEditorComponent,
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(

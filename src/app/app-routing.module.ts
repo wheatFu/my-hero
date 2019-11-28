@@ -3,6 +3,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HerosComponent } from './heros/heros.component';
+import { NameEditorComponent } from './name-editor/name-editor.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path: 'heros', component: HerosComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'detail/:id', component: HeroDetaisComponent},
+  {path: 'form', component: NameEditorComponent},
 ];
 
 @NgModule({
