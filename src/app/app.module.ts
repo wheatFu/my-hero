@@ -17,6 +17,8 @@ import { UnlessDirective } from './unless.directive';
 import { ExpeLengthPipePipe, ExponentialStrength } from './expe-length-pipe.pipe';
 import { PowerBoosterComponent } from './power-booster/power-booster.component';
 import { NameEditorComponent } from './name-editor/name-editor.component';
+import { ForbiddenValidatorDirective } from './forbidden-name.directive';
+import { FormMbqdComponent } from './form-mbqd/form-mbqd.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { NameEditorComponent } from './name-editor/name-editor.component';
     ExponentialStrength,
     PowerBoosterComponent,
     NameEditorComponent,
-
+    ForbiddenValidatorDirective,
+    FormMbqdComponent,
   ],
   imports: [
     BrowserModule,

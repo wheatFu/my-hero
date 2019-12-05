@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormArray, FormBuilder, Validators} from '@angular/forms';
+import { FormControl, FormArray, FormBuilder, Validators, AbstractControl, ValidatorFn} from '@angular/forms';
 
 @Component({
   selector: 'app-name-editor',
@@ -49,7 +49,6 @@ export class NameEditorComponent implements OnInit {
       }
     });
   }
-
   ngOnInit() {
   }
 
