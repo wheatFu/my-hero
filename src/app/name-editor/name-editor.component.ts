@@ -1,5 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormArray, FormBuilder, Validators, AbstractControl, ValidatorFn} from '@angular/forms';
+import { FormControl, FormArray, FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup, ValidationErrors} from '@angular/forms';
+
+
+/**
+ * 跨字段验证
+ * @param controlGroup 控件组
+ */
+const nameAgeCrossValidator: ValidatorFn = (controlGroup: FormGroup): ValidationErrors | null => {
+
+  // 获取子控件的信息
+  //
+  const name = controlGroup.get('firstName');
+  const age = controlGroup.get('lastName');
+
+  console.log(name);
+  console.log(age);
+
+  return !name && !age ? { nameAgeInvalid: true } : null;
+};
 
 @Component({
   selector: 'app-name-editor',
@@ -12,7 +30,7 @@ export class NameEditorComponent implements OnInit {
   name = new FormControl('');
   // 多个
   profileForm = this.fb.group({
-    firstName: ['', Validators.required],
+    firstName: [''],
     lastName: [''],
     address: this.fb.group({
       street: [''],
@@ -23,10 +41,16 @@ export class NameEditorComponent implements OnInit {
     aliases: this.fb.array([
       this.fb.control('')
     ])
-  });
+  },
+  { validators: [nameAgeCrossValidator] }
+  );
 
   get aliases() {
     return this.profileForm.get('aliases') as FormArray;
+  }
+
+  get firstName() {
+    return this.profileForm.get('firstName');
   }
 
   updateName() {
@@ -34,6 +58,15 @@ export class NameEditorComponent implements OnInit {
   }
 
   onSubmit() {
+
+    const la = this.profileForm.get('firstName');
+
+    if (la.value === '11') {
+      window.alert('姓名不能为11');
+      return;
+    }
+
+    console.log(la.value);
     console.log(this.profileForm.value);
   }
 

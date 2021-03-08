@@ -19,6 +19,9 @@ import { PowerBoosterComponent } from './power-booster/power-booster.component';
 import { NameEditorComponent } from './name-editor/name-editor.component';
 import { ForbiddenValidatorDirective } from './forbidden-name.directive';
 import { FormMbqdComponent } from './form-mbqd/form-mbqd.component';
+import { GaEtpsOpenComponent } from './ga-etps-open/ga-etps-open.component';
+import {CheckboxModule} from 'primeng/checkbox';
+import { ActiveFormComponent } from './active-form/active-form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,8 @@ import { FormMbqdComponent } from './form-mbqd/form-mbqd.component';
     NameEditorComponent,
     ForbiddenValidatorDirective,
     FormMbqdComponent,
+    GaEtpsOpenComponent,
+    ActiveFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,12 +48,13 @@ import { FormMbqdComponent } from './form-mbqd/form-mbqd.component';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    CheckboxModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false}
     ),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

@@ -23,6 +23,10 @@
       Last Name:
       <input type="text" formControlName="lastName">
     </label>
+
+    <div *ngIf="profileForm.errors?.nameAgeInvalid && (profileForm.touched || profileForm.dirty)" class="alert alert-danger">
+      First Name/Last Name 必填!
+    </div>
   
     <div formGroupName="address">
       <h3>Address</h3>
@@ -69,7 +73,7 @@
   
   
   <p>
-    Form Status: {{ profileForm.status }}
+    Form Status: {{ profileForm.status }}+{{profileForm.errors?.nameAgeInvalid}}
   </p>
   
   <p>

@@ -5,21 +5,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { HerosComponent } from './heros/heros.component';
 import { NameEditorComponent } from './name-editor/name-editor.component';
 import { FormMbqdComponent } from './form-mbqd/form-mbqd.component';
+import { GaEtpsOpenComponent } from './ga-etps-open/ga-etps-open.component';
+import { ActiveFormComponent } from './active-form/active-form.component';
 
 
-const routes: Routes = [
+const gaRoutes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {path: 'heros', component: HerosComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'detail/:id', component: HeroDetaisComponent},
   {path: 'form', component: NameEditorComponent},
   {path: 'mbqd', component: FormMbqdComponent},
+  {path: 'dwkh', component: GaEtpsOpenComponent},
+  {path: 'activefprm', component: ActiveFormComponent},
 ];
 
 @NgModule({
-  // 通常不会在router中声明组件
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(gaRoutes)
   ],
   exports: [ RouterModule ],
 

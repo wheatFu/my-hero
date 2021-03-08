@@ -1,15 +1,15 @@
 <h2>Top Heros</h2>
-
+<i class="pi pi-check"></i>
 <div>
     <input type="radio" name="colors" (click)="pick('green')">Green
     <input type="radio" name="colors" (click)="pick('yellow')">Yellow
     <input type="radio" name="colors" (click)="pick('cyan')">Cyan
   </div>
-<div class="grid grid-pad">
-    <a *ngFor="let hero of heros" class="col-1-4"
-        [routerLink]="['/detail', hero.id]" >
+<div class="grid grid-pad grid">
+    <a *ngFor="let list of heros" class="col-1-4"
+        [routerLink]="['/detail', list.id]" >
         <div class="module hero" [appHighlight]="color">
-            <h4>{{hero.name}}</h4>
+            <h4>{{list.name}}</h4>
         </div>
     </a>
 </div>
